@@ -53,8 +53,22 @@
         android:name="com.project.ecommerceapp.ui.fragments.FragmentProductCategories"
         android:label="fragment_product_categories"
         tools:layout="@layout/fragment_product_categories" >
+        <argument
+            android:name="categoryName"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Home decorating" />
         <action
             android:id="@+id/action_fragmentProductCategories_to_fragmentProductDetails"
+            app:destination="@id/fragmentProductDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentFavoriteProducts"
+        android:name="com.project.ecommerceapp.ui.fragments.FragmentFavoriteProducts"
+        android:label="fragment_favorite_products"
+        tools:layout="@layout/fragment_favorite_products" >
+        <action
+            android:id="@+id/action_fragmentFavoriteProducts_to_fragmentProductDetails"
             app:destination="@id/fragmentProductDetails" />
     </fragment>
 </navigation>

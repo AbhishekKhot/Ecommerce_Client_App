@@ -5,27 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.project.ecommerceapp.R
-import com.project.ecommerceapp.databinding.FragmentUserAccountBinding
+import com.project.ecommerceapp.databinding.FragmentFavoriteProductsBinding
 
-class FragmentUserAccount : Fragment() {
-    private var _binding:FragmentUserAccountBinding?=null
+class FragmentFavoriteProducts : Fragment() {
+    private var _binding:FragmentFavoriteProductsBinding?=null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding= FragmentUserAccountBinding.inflate(layoutInflater)
+        _binding=FragmentFavoriteProductsBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.cardOrderHistory.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentUserAccount_to_fragmentOrderHistory)
-        }
     }
 }

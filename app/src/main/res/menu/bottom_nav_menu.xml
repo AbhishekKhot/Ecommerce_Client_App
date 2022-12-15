@@ -11,9 +11,13 @@
         android:title="" />
 
     <item
+        android:id="@+id/fragmentFavoriteProducts"
+        android:icon="@drawable/ic_favorite"
+        android:title="" />
+
+    <item
         android:id="@+id/fragmentUserAccount"
         android:icon="@drawable/ic_account"
         android:title="" />
-
 
 </menu>
