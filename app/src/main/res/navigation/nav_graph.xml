@@ -9,7 +9,14 @@
         android:id="@+id/fragmentHome"
         android:name="com.project.ecommerceapp.ui.fragments.FragmentHome"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentProductDetails"
+            app:destination="@id/fragmentProductDetails" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentProductCategories"
+            app:destination="@id/fragmentProductCategories" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentCart"
         android:name="com.project.ecommerceapp.ui.fragments.FragmentCart"
@@ -19,7 +26,11 @@
         android:id="@+id/fragmentUserAccount"
         android:name="com.project.ecommerceapp.ui.fragments.FragmentUserAccount"
         android:label="fragment_user_account"
-        tools:layout="@layout/fragment_user_account" />
+        tools:layout="@layout/fragment_user_account" >
+        <action
+            android:id="@+id/action_fragmentUserAccount_to_fragmentOrderHistory"
+            app:destination="@id/fragmentOrderHistory" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentOrderHistory"
         android:name="com.project.ecommerceapp.ui.fragments.FragmentOrderHistory"
@@ -29,10 +40,21 @@
         android:id="@+id/fragmentProductDetails"
         android:name="com.project.ecommerceapp.ui.fragments.FragmentProductDetails"
         android:label="fragment_product_details"
-        tools:layout="@layout/fragment_product_details" />
+        tools:layout="@layout/fragment_product_details" >
+        <argument
+            android:name="productID"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentProductDetails_to_fragmentCart"
+            app:destination="@id/fragmentCart" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentProductCategories"
         android:name="com.project.ecommerceapp.ui.fragments.FragmentProductCategories"
         android:label="fragment_product_categories"
-        tools:layout="@layout/fragment_product_categories" />
+        tools:layout="@layout/fragment_product_categories" >
+        <action
+            android:id="@+id/action_fragmentProductCategories_to_fragmentProductDetails"
+            app:destination="@id/fragmentProductDetails" />
+    </fragment>
 </navigation>
