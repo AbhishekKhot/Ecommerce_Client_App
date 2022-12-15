@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentHome">
+
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="com.project.ecommerceapp.ui.fragments.FragmentHome"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/fragmentCart"
+        android:name="com.project.ecommerceapp.ui.fragments.FragmentCart"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/fragmentUserAccount"
+        android:name="com.project.ecommerceapp.ui.fragments.FragmentUserAccount"
+        android:label="fragment_user_account"
+        tools:layout="@layout/fragment_user_account" />
+    <fragment
+        android:id="@+id/fragmentOrderHistory"
+        android:name="com.project.ecommerceapp.ui.fragments.FragmentOrderHistory"
+        android:label="fragment_order_history"
+        tools:layout="@layout/fragment_order_history" />
+    <fragment
+        android:id="@+id/fragmentProductDetails"
+        android:name="com.project.ecommerceapp.ui.fragments.FragmentProductDetails"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" />
+    <fragment
+        android:id="@+id/fragmentProductCategories"
+        android:name="com.project.ecommerceapp.ui.fragments.FragmentProductCategories"
+        android:label="fragment_product_categories"
+        tools:layout="@layout/fragment_product_categories" />
+</navigation>
