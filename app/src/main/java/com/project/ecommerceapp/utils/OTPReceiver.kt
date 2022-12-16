@@ -9,7 +9,7 @@ import com.google.android.gms.common.api.Status
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class OTPReciver : BroadcastReceiver() {
+class OTPReceiver : BroadcastReceiver() {
     lateinit var otpReceiverListener: OtpReceiverListener
     //var otpReceiverListener: OtpReceiverListener? = null
 
