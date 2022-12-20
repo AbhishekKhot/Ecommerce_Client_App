@@ -1,11 +1,13 @@
 package com.project.ecommerceapp.ui
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -14,7 +16,9 @@ import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
 import com.project.ecommerceapp.R
 import com.project.ecommerceapp.databinding.ActivityPhoneNumberBinding
+import com.project.ecommerceapp.utils.Constants.SHARED_PREFERENCES_NAME
 import java.util.concurrent.TimeUnit
+
 
 class PhoneNumberActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPhoneNumberBinding
@@ -22,6 +26,7 @@ class PhoneNumberActivity : AppCompatActivity() {
     private var firebaseAuth = FirebaseAuth.getInstance()
     private lateinit var countryCode: String
     private lateinit var phoneNumber:String
+    private var sharedpreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +49,10 @@ class PhoneNumberActivity : AppCompatActivity() {
                 binding.etPhoneNumber.requestFocus()
                 binding.etPhoneNumber.error="Not Valid Number"
             }else{
+                val editor: SharedPreferences.Editor = sharedpreferences.edit()
+                editor.putString("USER_PHONE_NUMBER", number.toString())
+                editor.apply()
+
                 binding.progressBar.visibility=View.VISIBLE
                 binding.btnContinue.setBackgroundColor(R.color.grey)
                 phoneNumber=countryCode+number

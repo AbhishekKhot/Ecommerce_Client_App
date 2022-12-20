@@ -21,7 +21,9 @@
         android:id="@+id/fragmentCart"
         android:name="com.project.ecommerceapp.ui.fragments.FragmentCart"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+
+    </fragment>
     <fragment
         android:id="@+id/fragmentUserAccount"
         android:name="com.project.ecommerceapp.ui.fragments.FragmentUserAccount"
@@ -71,4 +73,6 @@
             android:id="@+id/action_fragmentFavoriteProducts_to_fragmentProductDetails"
             app:destination="@id/fragmentProductDetails" />
     </fragment>
+
+
 </navigation>
