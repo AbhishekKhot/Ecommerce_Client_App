@@ -33,7 +33,7 @@ class AddressActivity : AppCompatActivity() {
         Toast.makeText(this, totalAmount.toString(), Toast.LENGTH_SHORT).show()
 
         sharedPref=getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE)
-        editor=sharedPref.edit()
+       editor=sharedPref.edit()
 
         getAllValues()
         binding.btnProceedToPay.setOnClickListener {
