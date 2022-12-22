@@ -55,4 +55,5 @@
     <string name="state_name">State Name</string>
     <string name="pin_code">Pin code</string>
     <string name="address">Address</string>
+    <string name="done">DONE</string>
 </resources>

@@ -8,4 +8,5 @@ object Constants {
    const val USER_STATE_NAME="USER_STATE_NAME"
    const val PIN_CODE="PIN_CODE"
    const val ADDRESS="ADDRESS"
+   const val TOTAL_AMOUNT="TOTAL_AMOUNT"
 }

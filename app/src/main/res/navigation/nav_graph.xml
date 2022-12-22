@@ -23,6 +23,9 @@
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" >
 
+        <action
+            android:id="@+id/action_fragmentCart_to_fragmentUserAddress"
+            app:destination="@id/fragmentUserAddress" />
     </fragment>
     <fragment
         android:id="@+id/fragmentUserAccount"
@@ -73,6 +76,20 @@
             android:id="@+id/action_fragmentFavoriteProducts_to_fragmentProductDetails"
             app:destination="@id/fragmentProductDetails" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentUserAddress"
+        android:name="com.project.ecommerceapp.ui.fragments.FragmentUserAddress"
+        android:label="fragment_user_address"
+        tools:layout="@layout/fragment_user_address" >
+        <action
+            android:id="@+id/action_fragmentUserAddress_to_paymentActivity"
+            app:destination="@id/paymentActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/paymentActivity"
+        android:name="com.project.ecommerceapp.ui.PaymentActivity"
+        android:label="activity_payment"
+        tools:layout="@layout/activity_payment" />
 
 
 </navigation>

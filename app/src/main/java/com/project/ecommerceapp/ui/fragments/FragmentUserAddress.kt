@@ -1,7 +1,5 @@
 package com.project.ecommerceapp.ui.fragments
 
-import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,15 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.NavArgs
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.project.ecommerceapp.R
 import com.project.ecommerceapp.databinding.FragmentUserAddressBinding
-import com.project.ecommerceapp.ui.PaymentActivity
 import com.project.ecommerceapp.utils.Constants
 import com.project.ecommerceapp.utils.Constants.ADDRESS
 import com.project.ecommerceapp.utils.Constants.PIN_CODE
+import com.project.ecommerceapp.utils.Constants.TOTAL_AMOUNT
 import com.project.ecommerceapp.utils.Constants.USER_CITY_NAME
 import com.project.ecommerceapp.utils.Constants.USER_NAME
 import com.project.ecommerceapp.utils.Constants.USER_PHONE_NUMBER
@@ -26,12 +23,14 @@ import com.project.ecommerceapp.utils.Constants.USER_STATE_NAME
 class FragmentUserAddress : Fragment() {
     private var _binding: FragmentUserAddressBinding? = null
     private val binding get() = _binding!!
-    private var sharedpreferences = requireContext().getSharedPreferences(Constants.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+    private var totalAmount: Long? = null
+    private lateinit var sharedPref: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentUserAddressBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -39,79 +38,78 @@ class FragmentUserAddress : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sharedPref=requireActivity().getSharedPreferences(
+            Constants.SHARED_PREFERENCES_NAME,
+            AppCompatActivity.MODE_PRIVATE
+        )
+        editor=sharedPref.edit()
+
+
+        totalAmount=sharedPref.getString(TOTAL_AMOUNT, "")?.toLong()
+        Toast.makeText(requireActivity(), totalAmount.toString(), Toast.LENGTH_SHORT).show()
+
         getAllValues()
         binding.btnProceedToPay.setOnClickListener {
             updateAllValues()
-            val intent = Intent(requireActivity(),PaymentActivity::class.java)
-            intent.putExtra("totalAmount","2033")
-            startActivity(intent)
+            findNavController().navigate(R.id.action_fragmentUserAddress_to_paymentActivity)
+
         }
+
     }
 
     private fun updateAllValues() {
-        if(binding.etUserName.toString().isNotEmpty()){
-            val editor: SharedPreferences.Editor = sharedpreferences.edit()
-            editor.putString(USER_NAME, binding.etUserName.toString())
+        if (binding.etUserName.text.toString().isNotEmpty()) {
+            editor.putString(USER_NAME, binding.etUserName.text.toString())
             editor.apply()
-        }
-        else{
+        } else {
             binding.etUserName.requestFocus()
-            binding.etUserName.error="Empty"
+            binding.etUserName.error = "Empty"
         }
-        if(binding.etUserNumber.toString().isNotEmpty()){
-            val editor: SharedPreferences.Editor = sharedpreferences.edit()
-            editor.putString(USER_NAME, binding.etUserName.toString())
+        if (binding.etUserNumber.text.toString().isNotEmpty()) {
+            editor.putString(USER_PHONE_NUMBER, binding.etUserNumber.text.toString())
             editor.apply()
-        }
-        else{
+        } else {
             binding.etUserNumber.requestFocus()
-            binding.etUserNumber.error="Empty"
+            binding.etUserNumber.error = "Empty"
         }
-        if(binding.etCityName.toString().isNotEmpty()){
-            val editor: SharedPreferences.Editor = sharedpreferences.edit()
-            editor.putString(USER_NAME, binding.etUserName.toString())
+        if (binding.etCityName.text.toString().isNotEmpty()) {
+            editor.putString(USER_CITY_NAME, binding.etCityName.text.toString())
             editor.apply()
-        }
-        else{
+        } else {
             binding.etCityName.requestFocus()
-            binding.etCityName.error="Empty"
+            binding.etCityName.error = "Empty"
         }
-        if(binding.etStateName.toString().isNotEmpty()){
-            val editor: SharedPreferences.Editor = sharedpreferences.edit()
-            editor.putString(USER_NAME, binding.etUserName.toString())
+        if (binding.etStateName.text.toString().isNotEmpty()) {
+            editor.putString(USER_STATE_NAME, binding.etStateName.text.toString())
             editor.apply()
-        }
-        else{
+        } else {
             binding.etStateName.requestFocus()
-            binding.etStateName.error="Empty"
+            binding.etStateName.error = "Empty"
         }
-        if(binding.etPinCode.toString().isNotEmpty()){
-            val editor: SharedPreferences.Editor = sharedpreferences.edit()
-            editor.putString(USER_NAME, binding.etUserName.toString())
+        if (binding.etPinCode.text.toString().isNotEmpty()) {
+            editor.putString(PIN_CODE, binding.etPinCode.text.toString())
             editor.apply()
-        }
-        else{
+        } else {
             binding.etPinCode.requestFocus()
-            binding.etPinCode.error="Empty"
+            binding.etPinCode.error = "Empty"
         }
-        if(binding.etUserAddress.toString().isNotEmpty()){
-            val editor: SharedPreferences.Editor = sharedpreferences.edit()
-            editor.putString(USER_NAME, binding.etUserName.toString())
+        if (binding.etUserAddress.text.toString().isNotEmpty()) {
+            editor.putString(ADDRESS, binding.etUserAddress.text.toString())
             editor.apply()
-        }
-        else{
+        } else {
             binding.etUserAddress.requestFocus()
-            binding.etUserAddress.error="Empty"
+            binding.etUserAddress.error = "Empty"
         }
     }
 
     private fun getAllValues() {
-        binding.etUserName.setText(sharedpreferences.getString(USER_NAME,""))
-        binding.etUserNumber.setText(sharedpreferences.getString(USER_PHONE_NUMBER,""))
-        binding.etCityName.setText(sharedpreferences.getString(USER_CITY_NAME,""))
-        binding.etStateName.setText(sharedpreferences.getString(USER_STATE_NAME,""))
-        binding.etPinCode.setText(sharedpreferences.getString(PIN_CODE,""))
-        binding.etUserAddress.setText(sharedpreferences.getString(ADDRESS,""))
+        binding.etUserName.setText(sharedPref.getString(USER_NAME, ""))
+        binding.etUserNumber.setText(sharedPref.getString(USER_PHONE_NUMBER, ""))
+        binding.etCityName.setText(sharedPref.getString(USER_CITY_NAME, ""))
+        binding.etStateName.setText(sharedPref.getString(USER_STATE_NAME, ""))
+        binding.etPinCode.setText(sharedPref.getString(PIN_CODE, ""))
+        binding.etUserAddress.setText(sharedPref.getString(ADDRESS, ""))
     }
+
 
 }

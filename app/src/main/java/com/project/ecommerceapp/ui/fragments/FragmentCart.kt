@@ -1,18 +1,22 @@
 package com.project.ecommerceapp.ui.fragments
 
-import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.project.ecommerceapp.R
 import com.project.ecommerceapp.adapters.CartAdapter
 import com.project.ecommerceapp.databinding.FragmentCartBinding
 import com.project.ecommerceapp.db.ProductModel
-import com.project.ecommerceapp.ui.AddressActivity
 import com.project.ecommerceapp.ui.HomeActivity
+import com.project.ecommerceapp.utils.Constants
+import com.project.ecommerceapp.utils.Constants.TOTAL_AMOUNT
 import com.project.ecommerceapp.viewmodel.ProductViewModel
 
 class FragmentCart : Fragment() {
@@ -21,12 +25,14 @@ class FragmentCart : Fragment() {
     private lateinit var cartAdapter: CartAdapter
     private lateinit var viewModel: ProductViewModel
     private var totalAmount = 0
+    private lateinit var sharedPref: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCartBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -34,23 +40,24 @@ class FragmentCart : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as HomeActivity).viewModel
+
+        sharedPref=requireActivity().getSharedPreferences(
+            Constants.SHARED_PREFERENCES_NAME,
+            AppCompatActivity.MODE_PRIVATE
+        )
+        editor=sharedPref.edit()
+
         cartAdapter = CartAdapter(viewModel)
         setUpRecyclerView()
 
-        viewModel.getAllProducts().observe(viewLifecycleOwner, Observer { it ->
+        viewModel.getAllProducts().observe(viewLifecycleOwner) { it ->
             cartAdapter.differ.submitList(it)
-           calculateTotalCost(it)
-        })
+            calculateTotalCost(it)
+        }
+
 
         binding.btnCheckOut.setOnClickListener {
-//            val bundle = Bundle()
-//            bundle.putString("totalAmount", binding.tvTotalAmount.text.toString())
-//            findNavController().navigate(R.id.action_fragmentCart_to_fragmentUserAddress)
- //           findNavController().navigate(R.id.action_fragmentCart_to_fragmentUserAddress)
-            val intent = Intent(requireActivity(), AddressActivity::class.java)
-            intent.putExtra("totalAmount",binding.tvTotalAmount.text.toString())
-            startActivity(intent)
-
+            findNavController().navigate(R.id.action_fragmentCart_to_fragmentUserAddress)
         }
 
     }
@@ -61,6 +68,9 @@ class FragmentCart : Fragment() {
         }
 
         binding.tvTotalAmount.text=totalAmount.toString()
+
+        editor.putString(TOTAL_AMOUNT, (totalAmount*100).toString())
+        editor.apply()
     }
 
     private fun setUpRecyclerView() {
