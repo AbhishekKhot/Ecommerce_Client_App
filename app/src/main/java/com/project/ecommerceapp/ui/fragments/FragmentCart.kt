@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.ecommerceapp.R
@@ -27,7 +26,6 @@ class FragmentCart : Fragment() {
     private var totalAmount = 0
     private lateinit var sharedPref: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +52,6 @@ class FragmentCart : Fragment() {
             cartAdapter.differ.submitList(it)
             calculateTotalCost(it)
         }
-
 
         binding.btnCheckOut.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentCart_to_fragmentUserAddress)

@@ -9,4 +9,5 @@ object Constants {
    const val PIN_CODE="PIN_CODE"
    const val ADDRESS="ADDRESS"
    const val TOTAL_AMOUNT="TOTAL_AMOUNT"
+   const val DATABASE_NAME = "EDatabase"
 }

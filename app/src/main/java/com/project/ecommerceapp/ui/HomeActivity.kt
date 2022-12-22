@@ -21,23 +21,31 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityMainBinding.inflate(layoutInflater)
-       setTheme(R.style.Theme_EcommerceClientApp)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setTheme(R.style.Theme_EcommerceClientApp)
         setContentView(binding.root)
-       supportActionBar?.hide()
+        supportActionBar?.hide()
 
 
+        val repository = ProductRepository(
+            ProductDatabase.getInstance(this).productDao(),
+            ProductDatabase.getInstance(this).favoriteProductDao()
+        )
+        val viewModelProviderFactory = ProductViewModelProviderFactory(repository)
+        viewModel =
+            ViewModelProvider(this, viewModelProviderFactory).get(ProductViewModel::class.java)
 
-        val repository= ProductRepository(ProductDatabase.getInstance(this).productDao())
-        val viewModelProviderFactory= ProductViewModelProviderFactory(repository)
-        viewModel= ViewModelProvider(this,viewModelProviderFactory).get(ProductViewModel::class.java)
-
-        val navView: BottomNavigationView =binding.navView
+        val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        val appBarConfiguration= AppBarConfiguration(setOf(
-            R.id.fragmentHome, R.id.fragmentCart,R.id.fragmentFavoriteProducts, R.id.fragmentUserAccount
-        ))
-        setupActionBarWithNavController(navController,appBarConfiguration)
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.fragmentHome,
+                R.id.fragmentCart,
+                R.id.fragmentFavoriteProducts,
+                R.id.fragmentUserAccount
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 }

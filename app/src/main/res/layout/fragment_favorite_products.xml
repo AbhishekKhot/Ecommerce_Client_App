@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.FragmentFavoriteProducts">
 
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewFavoriteProduct"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/favorite_item"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

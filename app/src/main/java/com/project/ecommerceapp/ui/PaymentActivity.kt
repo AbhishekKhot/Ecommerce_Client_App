@@ -24,6 +24,7 @@ class PaymentActivity : AppCompatActivity(), PaymentResultListener {
         super.onCreate(savedInstanceState)
         binding = ActivityPaymentBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
 
         sharedPref = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE)

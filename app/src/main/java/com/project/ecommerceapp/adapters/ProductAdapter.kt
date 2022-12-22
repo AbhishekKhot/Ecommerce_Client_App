@@ -8,11 +8,14 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.project.ecommerceapp.R
 import com.project.ecommerceapp.databinding.ProductItemBinding
+import com.project.ecommerceapp.db.FavoriteProductModel
 import com.project.ecommerceapp.model.Product
+import com.project.ecommerceapp.viewmodel.ProductViewModel
 
-class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter(val viewModel:ProductViewModel) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(val binding: ProductItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -49,6 +52,17 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() 
             bundle.putString("productID", product.product_id)
             it.findNavController()
                 .navigate(R.id.action_fragmentHome_to_fragmentProductDetails, bundle)
+        }
+
+        holder.binding.tvAddToFavorite.setOnClickListener {
+            val data = FavoriteProductModel(
+                product.product_id.toString(),
+                product.product_name,
+                product.product_cover_image,
+                product.product_selling_price
+            )
+            viewModel.insertFavoriteProduct(data)
+            Snackbar.make(it,"Product added to favorite list successfully",Snackbar.LENGTH_SHORT).show()
         }
     }
 
