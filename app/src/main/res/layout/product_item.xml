@@ -39,30 +39,21 @@
 
            <TextView
                android:id="@+id/tvProductPrice"
-               android:layout_width="wrap_content"
-               android:layout_height="20dp"
+               android:layout_width="0dp"
+               android:layout_height="30dp"
                android:fontFamily="@font/raleway"
                android:padding="3dp"
-               android:layout_weight="1"
+               android:layout_weight="2"
                android:text="@string/_24_00"
                android:textColor="@color/black"
                android:textSize="14sp"
                android:textStyle="bold" />
 
-           <TextView
+           <ImageView
                android:id="@+id/tvAddToFavorite"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:background="@color/green"
-               android:fontFamily="@font/raleway"
-               android:gravity="center"
-               android:padding="3dp"
-               android:layout_weight="1"
-               android:text="@string/add_cart"
-               android:textColor="@color/white"
-               android:textSize="14sp"
-               android:textStyle="bold"
-               app:drawableEndCompat="@drawable/ic_favorite" />
+               android:layout_width="20dp"
+               android:layout_height="30dp"
+               android:src="@drawable/ic_before_favorite"/>
 
        </LinearLayout>
 

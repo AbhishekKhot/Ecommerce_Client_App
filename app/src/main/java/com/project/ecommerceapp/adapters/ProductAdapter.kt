@@ -1,5 +1,6 @@
 package com.project.ecommerceapp.adapters
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -37,6 +38,7 @@ class ProductAdapter(val viewModel:ProductViewModel) : RecyclerView.Adapter<Prod
         return ProductViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = differ.currentList[position]
         holder.binding.apply {
@@ -54,6 +56,10 @@ class ProductAdapter(val viewModel:ProductViewModel) : RecyclerView.Adapter<Prod
                 .navigate(R.id.action_fragmentHome_to_fragmentProductDetails, bundle)
         }
 
+        if(viewModel.isFavoriteProductExits(product.product_id.toString())!=null){
+            holder.binding.tvAddToFavorite.setImageResource(R.drawable.ic_after_favorite)
+        }
+
         holder.binding.tvAddToFavorite.setOnClickListener {
             val data = FavoriteProductModel(
                 product.product_id.toString(),
@@ -62,6 +68,7 @@ class ProductAdapter(val viewModel:ProductViewModel) : RecyclerView.Adapter<Prod
                 product.product_selling_price
             )
             viewModel.insertFavoriteProduct(data)
+            holder.binding.tvAddToFavorite.setImageResource(R.drawable.ic_after_favorite)
             Snackbar.make(it,"Product added to favorite list successfully",Snackbar.LENGTH_SHORT).show()
         }
     }

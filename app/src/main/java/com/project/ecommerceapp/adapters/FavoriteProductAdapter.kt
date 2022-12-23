@@ -45,6 +45,9 @@ class FavoriteProductAdapter(val viewModel: ProductViewModel) :
     override fun onBindViewHolder(holder: FavoriteProductViewHolder, position: Int) {
         val product = differ.currentList[position]
         holder.binding.tvProductName.text = product.productName
+        if (viewModel.isExits(product.productId) != null) {
+            holder.binding.tvProductPrice.text = "In Cart"
+        }
         Glide.with(holder.itemView).load(product.productImage).placeholder(R.drawable.ic_image)
             .into(holder.binding.ivProduct)
 
@@ -73,6 +76,7 @@ class FavoriteProductAdapter(val viewModel: ProductViewModel) :
             } else {
                 viewModel.insertProduct(data)
                 Snackbar.make(it, "Item added to cart successfully", Snackbar.LENGTH_SHORT).show()
+
             }
         }
     }
