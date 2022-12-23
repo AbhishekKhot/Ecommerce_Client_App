@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_fragmentHome_to_fragmentProductCategories"
             app:destination="@id/fragmentProductCategories" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentSearchProducts"
+            app:destination="@id/fragmentSearchProducts" />
     </fragment>
     <fragment
         android:id="@+id/fragmentCart"
@@ -90,6 +93,17 @@
         android:name="com.project.ecommerceapp.ui.PaymentActivity"
         android:label="activity_payment"
         tools:layout="@layout/activity_payment" />
+    <fragment
+        android:id="@+id/fragmentSearchProducts"
+        android:name="com.project.ecommerceapp.ui.fragments.FragmentSearchProducts"
+        android:label="FragmentSearchProducts" >
+        <action
+            android:id="@+id/action_fragmentSearchProducts_to_fragmentProductDetails"
+            app:destination="@id/fragmentProductDetails" />
+        <argument
+            android:name="query"
+            app:argType="string" />
+    </fragment>
 
 
 </navigation>
