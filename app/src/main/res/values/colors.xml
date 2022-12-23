@@ -12,5 +12,6 @@
     <color name="grey">#EEF1F4</color>
     <color name="grey_bottom_nav">#DEE1E4</color>
     <color name="yellow">#FFE500</color>
-    <color name="green">#30A134</color>
+    <color name="light_blue">#0077FF</color>
+    <color name="app_color">#0077FF</color>
 </resources>

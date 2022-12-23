@@ -120,9 +120,11 @@ class FragmentHome : Fragment() {
 
     private fun setUpSlider() {
         val list = listOf<CarouselItem>(
-            CarouselItem(R.drawable.i1),
-            CarouselItem(R.drawable.i2),
-        )
+            CarouselItem(R.drawable.one),
+            CarouselItem(R.drawable.two),
+            CarouselItem(R.drawable.three),
+            CarouselItem(R.drawable.four),
+            CarouselItem(R.drawable.five))
         binding.carousel.addData(list)
     }
 }
