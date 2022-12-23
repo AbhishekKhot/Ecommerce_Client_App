@@ -30,23 +30,18 @@
                 android:src="@drawable/ic_account"
                 app:tint="@color/black" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <TextView
+                android:id="@+id/etUserName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:hint="@string/your_name"
-                android:padding="5dp"
-                app:boxStrokeColor="@color/black"
-                app:hintTextColor="@color/black">
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/raleway"
+                android:text="@string/user_name"
+                android:padding="5dp"/>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etUserName"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -61,6 +56,7 @@
         app:cardCornerRadius="8dp">
 
         <TextView
+            android:id="@+id/tvMyCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -73,29 +69,6 @@
             android:textStyle="bold"
             app:drawableStartCompat="@drawable/ic_cart"
             app:drawableTint="@color/black" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardYourOrder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="12dp"
-        android:elevation="50dp"
-        app:cardCornerRadius="8dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:drawablePadding="8dp"
-            android:fontFamily="@font/raleway"
-            android:padding="8dp"
-            android:text="@string/your_order"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:drawableLeftCompat="@drawable/ic_history" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView

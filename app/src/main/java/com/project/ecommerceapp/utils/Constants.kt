@@ -10,4 +10,5 @@ object Constants {
    const val ADDRESS="ADDRESS"
    const val TOTAL_AMOUNT="TOTAL_AMOUNT"
    const val DATABASE_NAME = "EDatabase"
+   const val URL="https://www.termsandconditionsgenerator.com/live.php?token=SrILBOV4sKxKFtbOp43sJufj1FhY4Lxj"
 }

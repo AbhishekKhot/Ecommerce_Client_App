@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_fragmentUserAccount_to_fragmentOrderHistory"
             app:destination="@id/fragmentOrderHistory" />
+        <action
+            android:id="@+id/action_fragmentUserAccount_to_fragmentCart"
+            app:destination="@id/fragmentCart" />
     </fragment>
     <fragment
         android:id="@+id/fragmentOrderHistory"
