@@ -1,16 +1,16 @@
 package com.project.ecommerceapp.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
-import com.project.ecommerceapp.R
 import com.project.ecommerceapp.databinding.ActivityOtpVerificationBinding
 import java.util.concurrent.TimeUnit
 
@@ -23,6 +23,8 @@ class OtpVerificationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityOtpVerificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.tvResendOTP.setPaintFlags(binding.tvResendOTP.paintFlags or Paint.UNDERLINE_TEXT_FLAG)
 
         binding.tvResendOTP.setOnClickListener {
             resendOTP()

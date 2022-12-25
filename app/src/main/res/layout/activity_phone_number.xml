@@ -7,20 +7,6 @@
     android:background="@color/white"
     tools:context=".ui.PhoneNumberActivity">
 
-    <TextView
-        android:id="@+id/tvH2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/app_name"
-        android:textColor="@color/light_blue"
-        android:textSize="@dimen/h1"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/iv2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv2"
         android:layout_width="100dp"
@@ -30,7 +16,7 @@
         android:src="@drawable/splash_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvH2" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tv2"
@@ -53,10 +39,9 @@
         android:id="@+id/linear_layout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal"
         android:weightSum="2"
-        app:layout_constraintBottom_toTopOf="@+id/tv2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv2">
@@ -65,8 +50,6 @@
             android:id="@+id/codePicker"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:padding="5dp"
-            android:layout_marginStart="5dp"
             app:ccp_areaCodeDetectedCountry="true"
             app:ccp_autoDetectCountry="true"
             app:ccp_showFlag="false" />
@@ -76,10 +59,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:hint="@string/phone_number"
             android:layout_marginEnd="5dp"
-            android:padding="5dp"
             app:boxStrokeColor="@color/light_blue"
             app:hintTextColor="@color/light_blue">
 
@@ -87,8 +69,8 @@
                 android:id="@+id/etPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableEnd="@drawable/ic_phone"
-                android:drawablePadding="5dp"
+                android:textSize="14sp"
+                android:fontFamily="@font/raleway"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,28 +83,27 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/raleway"
         android:text="@string/_continue"
         android:textColor="@color/white"
         android:textSize="@dimen/h1"
         android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linear_layout" />
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_centerHorizontal="true"
         android:padding="12dp"
+        android:progressBackgroundTint="@color/app_color"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/linear_layout"
         app:layout_constraintEnd_toEndOf="@+id/linear_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear_layout" />
+        app:layout_constraintStart_toStartOf="@id/linear_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
